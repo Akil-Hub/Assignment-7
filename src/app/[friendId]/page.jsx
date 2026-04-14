@@ -8,6 +8,7 @@ import { CiBellOff } from "react-icons/ci";
 import { FaArchive, FaPhone, FaVideo } from "react-icons/fa";
 import { FaMessage, FaTextHeight } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
+import { HashLoader } from "react-spinners";
 import { toast } from "react-toastify";
 const FriendDetails = () => {
   const { friends, timeline, setTimeline } = useDataContext();
@@ -16,6 +17,8 @@ const FriendDetails = () => {
   const currentFriend = friends.find(
     (friend) => friend.id === Number(friendId),
   );
+
+  if (!currentFriend) return <div className="flex justify-center items-center h-80 text-5xl"> <HashLoader className=" text-primary"/>Loading...</div>
 
   const {
     picture,
