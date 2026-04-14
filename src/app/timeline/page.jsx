@@ -47,6 +47,8 @@ const Timeline = () => {
       </section>
       <section className=" wrapper ">
         <div className="flex flex-col gap-4 pb-10">
+        {!timeline && <p>Loading.......</p>}
+
           {filteredData.length < 1 ? (
             <span className="text-5xl text-primary flex justify-center items-center h-[30vh]">
               Timeline is Empty!!

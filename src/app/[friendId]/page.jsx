@@ -10,58 +10,55 @@ import { FaMessage, FaTextHeight } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
 import { toast } from "react-toastify";
 const FriendDetails = () => {
-
-
-
-
-  const { friends,timeline,setTimeline } = useDataContext();
+  const { friends, timeline, setTimeline } = useDataContext();
 
   const { friendId } = useParams();
   const currentFriend = friends.find(
     (friend) => friend.id === Number(friendId),
   );
 
-  if (!currentFriend) return <p>Loading...</p>;
-  const { picture, id, name, days_since_contact, tags, email, status, bio,goal,next_due_date } =
-    currentFriend;
+  const {
+    picture,
+    id,
+    name,
+    days_since_contact,
+    tags,
+    email,
+    status,
+    bio,
+    goal,
+    next_due_date,
+  } = currentFriend;
 
+  // Function are here
 
-    // Function are here 
-
-    const handleAudioCall = (name) => {
-        const audioCall = {
-            name:name,
-            status:'audioCall',
-
-        }
-        
-        setTimeline([...timeline,audioCall])
-        toast.success(`Audio Calling to ${name}`)
-        
+  const handleAudioCall = (name) => {
+    const audioCall = {
+      name: name,
+      status: "audioCall",
     };
-    const handleMessage = (name) => {
-         const message = {
-            name:name,
-            status:'message',
-            messageCount:1
 
-
-        }
-        setTimeline([...timeline,message])
-        toast.success(`Send Message to ${name}`)
+    setTimeline([...timeline, audioCall]);
+    toast.success(`Audio Calling to ${name}`);
+  };
+  const handleMessage = (name) => {
+    const message = {
+      name: name,
+      status: "message",
+      messageCount: 1,
     };
-    const handleVideoCall= (name) => {
-         const videoCall = {
-            name:name,
-            status:'videoCall',
-            videoCallCount:1
-
-
-        }
-        setTimeline([...timeline,videoCall])
-        toast.success(`Video Calling to ${name}`)
+    setTimeline([...timeline, message]);
+    toast.success(`Send Message to ${name}`);
+  };
+  const handleVideoCall = (name) => {
+    const videoCall = {
+      name: name,
+      status: "videoCall",
+      videoCallCount: 1,
     };
-console.log(timeline)
+    setTimeline([...timeline, videoCall]);
+    toast.success(`Video Calling to ${name}`);
+  };
   return (
     <article className="wrapper flex flex-col md:flex-row gap-5 justify-between w-full ">
       <section className="w-full md:w-[36%]">
@@ -116,40 +113,74 @@ console.log(timeline)
         </div>
       </section>
       <section className="w-full md:w-[64%] grid grid-cols-1 sm:grid-cols-3 gap-4 content-start">
-  
-  <div className="bg-white text-center py-4 rounded-md border border-gray-200 shadow-xl h-30">
-    <h4 className="text-xl text-primary font-semibold">{days_since_contact}</h4>
-    <p className="text-secondary">Days Since Contact</p>
-  </div>
+        <div className="bg-white text-center py-4 rounded-md border border-gray-200 shadow-xl h-30">
+          <h4 className="text-xl text-primary font-semibold">
+            {days_since_contact}
+          </h4>
+          <p className="text-secondary">Days Since Contact</p>
+        </div>
 
-  <div className="bg-white text-center py-4 rounded-md border border-gray-200 shadow-xl h-30">
-    <h4 className="text-xl text-primary font-semibold">{goal}</h4>
-    <p className="text-secondary">Goal (Days)</p>
-  </div>
+        <div className="bg-white text-center py-4 rounded-md border border-gray-200 shadow-xl h-30">
+          <h4 className="text-xl text-primary font-semibold">{goal}</h4>
+          <p className="text-secondary">Goal (Days)</p>
+        </div>
 
-  <div className="bg-white text-center py-4 rounded-md border border-gray-200 shadow-xl h-30">
-    <h4 className="text-xl text-primary font-semibold">{next_due_date}</h4>
-    <p className="text-secondary">Next Due</p>
-  </div>
+        <div className="bg-white text-center py-4 rounded-md border border-gray-200 shadow-xl h-30">
+          <h4 className="text-xl text-primary font-semibold">
+            {next_due_date}
+          </h4>
+          <p className="text-secondary">Next Due</p>
+        </div>
 
-  <div className="bg-white py-4 rounded-md col-span-3 flex justify-between border border-gray-200 shadow-xl px-4 h-25 items-center">
-    <div>
-      <h4 className="text-xl text-primary font-semibold">Relationship Goal</h4>
-      <p className="text-secondary">Connect every <span className="text-primary">30 Days</span></p>
-    </div>
-    <Button variant="ghost" className="border">Edit</Button>
-  </div>
+        <div className="bg-white py-4 rounded-md col-span-3 flex justify-between border border-gray-200 shadow-xl px-4 h-25 items-center">
+          <div>
+            <h4 className="text-xl text-primary font-semibold">
+              Relationship Goal
+            </h4>
+            <p className="text-secondary">
+              Connect every <span className="text-primary">30 Days</span>
+            </p>
+          </div>
+          <Button variant="ghost" className="border">
+            Edit
+          </Button>
+        </div>
 
-  <footer className="bg-white shadow-xl col-span-3 w-full rounded-md p-4">
-    <h2 className="text-primary py-2 text-xl font-semibold">Quick Check-in</h2>
-    <div className="flex gap-3 items-center justify-between">
-      <Button onClick={()=>{handleAudioCall(name)}} variant="ghost" className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-55 h-30 text-2xl"><FaPhone size={40}/> Call</Button>
-      <Button onClick={()=>{handleMessage(name)}} variant="ghost" className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-55 h-30 text-2xl"><FaMessage size={40}/> Text</Button>
-      <Button onClick={()=>{handleVideoCall(name)}} variant="ghost" className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-55 h-30 text-2xl"><FaVideo size={40}/> Video</Button>
-    </div>
-  </footer>
-
-</section>
+        <footer className="bg-white shadow-xl col-span-3 w-full rounded-md p-4">
+          <h2 className="text-primary py-2 text-xl font-semibold">
+            Quick Check-in
+          </h2>
+          <div className="flex gap-3 items-center justify-between">
+            <Button
+              onClick={() => {
+                handleAudioCall(name);
+              }}
+              variant="ghost"
+              className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-55 h-30 text-2xl"
+            >
+              <FaPhone size={40} /> Call
+            </Button>
+            <Button
+              onClick={() => {
+                handleMessage(name);
+              }}
+              variant="ghost"
+              className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-55 h-30 text-2xl"
+            >
+              <FaMessage size={40} /> Text
+            </Button>
+            <Button
+              onClick={() => {
+                handleVideoCall(name);
+              }}
+              variant="ghost"
+              className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-55 h-30 text-2xl"
+            >
+              <FaVideo size={40} /> Video
+            </Button>
+          </div>
+        </footer>
+      </section>
     </article>
   );
 };
