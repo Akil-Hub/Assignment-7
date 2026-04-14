@@ -8,8 +8,13 @@ import { CiBellOff } from "react-icons/ci";
 import { FaArchive, FaPhone, FaVideo } from "react-icons/fa";
 import { FaMessage, FaTextHeight } from "react-icons/fa6";
 import { MdDelete } from "react-icons/md";
+import { toast } from "react-toastify";
 const FriendDetails = () => {
-  const { friends } = useDataContext();
+
+
+
+
+  const { friends,timeline,setTimeline } = useDataContext();
 
   const { friendId } = useParams();
   const currentFriend = friends.find(
@@ -17,9 +22,47 @@ const FriendDetails = () => {
   );
 
   if (!currentFriend) return <p>Loading...</p>;
-  console.log(currentFriend);
   const { picture, id, name, days_since_contact, tags, email, status, bio,goal,next_due_date } =
     currentFriend;
+
+
+    // Function are here 
+
+    const handleAudioCall = (name) => {
+        const audioCall = {
+            name:name,
+            status:'audioCall',
+            audioCallCount:1
+
+        }
+        
+        setTimeline([...timeline,audioCall,audioCallCount += 1])
+        toast.success(`Audio Calling to ${name}`)
+        
+    };
+    const handleMessage = (name) => {
+         const message = {
+            name:name,
+            status:'message',
+            messageCount:1
+
+
+        }
+        setTimeline([...timeline,message])
+        toast.success(`Send Message to ${name}`)
+    };
+    const handleVideoCall= (name) => {
+         const videoCall = {
+            name:name,
+            status:'videoCall',
+            videoCallCount:1
+
+
+        }
+        setTimeline([...timeline,videoCall])
+        toast.success(`Video Calling to ${name}`)
+    };
+console.log(timeline)
   return (
     <article className="wrapper flex flex-col md:flex-row gap-5 justify-between w-full ">
       <section className="w-full md:w-[36%]">
@@ -101,9 +144,9 @@ const FriendDetails = () => {
   <footer className="bg-white shadow-xl col-span-3 w-full rounded-md p-4">
     <h2 className="text-primary py-2 text-xl font-semibold">Quick Check-in</h2>
     <div className="flex gap-3 items-center justify-between">
-      <Button variant="ghost" className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-55 h-30 text-2xl"><FaPhone size={40}/> Call</Button>
-      <Button variant="ghost" className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-55 h-30 text-2xl"><FaMessage size={40}/> Text</Button>
-      <Button variant="ghost" className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-55 h-30 text-2xl"><FaVideo size={40}/> Video</Button>
+      <Button onClick={()=>{handleAudioCall(name)}} variant="ghost" className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-55 h-30 text-2xl"><FaPhone size={40}/> Call</Button>
+      <Button onClick={()=>{handleMessage(name)}} variant="ghost" className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-55 h-30 text-2xl"><FaMessage size={40}/> Text</Button>
+      <Button onClick={()=>{handleVideoCall(name)}} variant="ghost" className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-55 h-30 text-2xl"><FaVideo size={40}/> Video</Button>
     </div>
   </footer>
 

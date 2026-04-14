@@ -6,6 +6,8 @@ export const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
   const [friends, setFriends] = useState([]);
+  const [timeline, setTimeline] = useState([])
+
 
   useEffect(() => {
     const getData = async () => {
@@ -17,7 +19,7 @@ const DataProvider = ({ children }) => {
 
 
   return (
-    <DataContext.Provider value={{ friends }}>{children}</DataContext.Provider>
+    <DataContext.Provider value={{ friends,timeline,setTimeline }}>{children}</DataContext.Provider>
   );
 };
 

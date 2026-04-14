@@ -44,13 +44,14 @@ function Button({
   className,
   variant = "default",
   size = "default",
+  onClick,
   ...props
 }) {
   return (
     <ButtonPrimitive
       data-slot="button"
-      className={cn(buttonVariants({ variant, size, className }))}
-      {...props} />
+      className={cn(buttonVariants({ variant, size, className}))}
+      {...props} onClick={onClick} />
   );
 }
 

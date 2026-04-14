@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button";
 import React from "react";
-import { FaTextWidth } from "react-icons/fa";
 
 const Banner = () => {
   return (
@@ -17,7 +16,7 @@ const Banner = () => {
       <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 wrapper  justify-items-center gap-x-7 gap-y-5 py-10 border-b border-gray-200">
 
         <div className=" bg-white text-center py-4 rounded-md w-full">
-            <h4 className="text-xl text-primary font-semibold">10</h4>
+            <h4 className="text-xl text-primary font-semibold">8</h4>
 
             <p className="text-secondary ">Total Friends</p>
         </div>
