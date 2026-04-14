@@ -93,8 +93,8 @@ const FriendDetails = () => {
               </span>
             ))}
           </div>
-          <p className="text-secondary font-semibold text-xs">{bio}</p>
-          <p className="text-secondary text-sm">Preferred:{email}</p>
+          <p className="text-secondary font-semibold text-xs mx-auto w-full px-4 lg:text-md text-center break-all leading-relaxed">{bio}</p>
+          <p className="text-secondary  font-semibold lg:text-md text-xs">Preferred: {email}</p>
         </section>
         <div className="flex flex-col gap-5 mt-5 items-center w-full">
           <Button variant="ghost" className={"shadow-md w-full "} size="lg">
@@ -112,20 +112,21 @@ const FriendDetails = () => {
           </Button>
         </div>
       </section>
-      <section className="w-full md:w-[64%] grid grid-cols-1 sm:grid-cols-3 gap-4 content-start">
-        <div className="bg-white text-center py-4 rounded-md border border-gray-200 shadow-xl h-30">
+      <section className="w-full md:w-[64%] grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 content-start">
+
+        <div className="bg-white text-center py-4 rounded-md border border-gray-200 shadow-xl h-30 col-span-3 md:col-span-1">
           <h4 className="text-xl text-primary font-semibold">
             {days_since_contact}
           </h4>
           <p className="text-secondary">Days Since Contact</p>
         </div>
 
-        <div className="bg-white text-center py-4 rounded-md border border-gray-200 shadow-xl h-30">
+        <div className="bg-white text-center py-4 rounded-md border border-gray-200 shadow-xl h-30  col-span-3 md:col-span-1">
           <h4 className="text-xl text-primary font-semibold">{goal}</h4>
           <p className="text-secondary">Goal (Days)</p>
         </div>
 
-        <div className="bg-white text-center py-4 rounded-md border border-gray-200 shadow-xl h-30">
+        <div className="bg-white text-center py-4 rounded-md border border-gray-200 shadow-xl h-30  col-span-3 md:col-span-1">
           <h4 className="text-xl text-primary font-semibold">
             {next_due_date}
           </h4>
@@ -150,13 +151,13 @@ const FriendDetails = () => {
           <h2 className="text-primary py-2 text-xl font-semibold">
             Quick Check-in
           </h2>
-          <div className="flex gap-3 items-center justify-between">
+          <div className="flex flex-col lg:flex-row gap-3 items-center justify-between">
             <Button
               onClick={() => {
                 handleAudioCall(name);
               }}
               variant="ghost"
-              className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-55 h-30 text-2xl"
+              className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-full lg:w-50 h-30 text-2xl"
             >
               <FaPhone size={40} /> Call
             </Button>
@@ -165,7 +166,7 @@ const FriendDetails = () => {
                 handleMessage(name);
               }}
               variant="ghost"
-              className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-55 h-30 text-2xl"
+              className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-full lg:w-50 h-30 text-2xl"
             >
               <FaMessage size={40} /> Text
             </Button>
@@ -174,7 +175,7 @@ const FriendDetails = () => {
                 handleVideoCall(name);
               }}
               variant="ghost"
-              className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-55 h-30 text-2xl"
+              className="flex flex-col gap-1 bg-gray-50 border border-gray-200 w-full lg:w-50 h-30 text-2xl"
             >
               <FaVideo size={40} /> Video
             </Button>

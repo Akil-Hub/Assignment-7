@@ -54,12 +54,13 @@ const Navbar = () => {
           )}
         </button>
       </nav>
-
+{/* mobile menu */}
       <ul
         className={`flex flex-col items-center gap-4 py-3 z-20 md:hidden absolute inset-0  bg-white  h-40 transition-all duration-300 ease-in-out ${isMenuOpen ? "top-12" : "-top-40"}`}
       >
         {navLinks.map(({ label, href, icon: Icon, className }, idx) => (
           <Link
+           onClick={() => setIsMenuOpen(!isMenuOpen)}
             href={href}
             key={idx}
             className={`${navLinksClasses} ${pathName === href ? "bg-primary text-white" : ""} ${className || ""} `}
