@@ -7,17 +7,22 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import Text from "@/components/ui/Text";
+import Event from "@/components/ui/Event";
+import Text from "@/components/ui/Event";
 import VideoCall from "@/components/ui/VideoCall";
 import { useDataContext } from "@/context/dataContext";
 import { ChevronDown } from "lucide-react";
 import React, { useState } from "react";
+import text from "@/assets/text.png";
+import call from "@/assets/call.png";
+import video from "@/assets/video.png";
 
 const Timeline = () => {
   const [filter, setFilter] = useState("All");
   const { timeline } = useDataContext();
 
-  const filteredData = filter === 'All' ? timeline : timeline.filter((o) => o.status === filter);
+  const filteredData =
+    filter === "All" ? timeline : timeline.filter((o) => o.status === filter);
 
   return (
     <>
@@ -25,11 +30,11 @@ const Timeline = () => {
         <h3 className="text-3xl font-semibold text-primary ml-20 py-5">
           Timeline
         </h3>
-        <DropdownMenu >
+        <DropdownMenu>
           <DropdownMenuTrigger className="flex items-center gap-2 border px-4 py-2 rounded-md text-sm text-primary">
             {filter} <ChevronDown size={16} />
           </DropdownMenuTrigger>
-          <DropdownMenuContent className={'bg-white'}>
+          <DropdownMenuContent className={"bg-white"}>
             <DropdownMenuItem onClick={() => setFilter("All")}>
               All
             </DropdownMenuItem>
@@ -47,22 +52,30 @@ const Timeline = () => {
       </section>
       <section className=" wrapper ">
         <div className="flex flex-col gap-4 pb-10">
-        {!timeline && <p>Loading.......</p>}
+          {!timeline && <p>Loading.......</p>}
 
           {filteredData.length < 1 ? (
             <span className="text-5xl text-primary flex justify-center items-center h-[30vh]">
               Timeline is Empty!!
             </span>
           ) : (
-            filteredData?.map((occurrence, index) =>
-              occurrence.status === "audioCall" ? (
-                <AudioCall key={index} name={occurrence.name} />
-              ) : occurrence.status === "message" ? (
-                <Text key={index} name={occurrence.name} />
-              ) : occurrence.status === "videoCall" ? (
-                <VideoCall name={occurrence.name} key={index} />
-              ) : null,
-            )
+            filteredData?.map(({ status, name }, index) => (
+              // My custom own created one event component for all 3 tye of events call,text,video call next level props passing.
+              <Event
+                key={index}
+                title={`${status === "audioCall" ? "Audio Call" : status === "message" ? "Text" : "Video Call"}`}
+                desc={`${status === "audioCall" ? `Took career advise in audio call from ${name}` : status === "message" ? `Discus about future goal with ${name}` : `Discus in video conference with ${name}`}`}
+                src={
+                  status === "audioCall"
+                    ? call
+                    : status === "message"
+                      ? text
+                      : video
+                }
+                alt={"Image Icons"}
+                date={new Date().toLocaleDateString("en-US")}
+              />
+            ))
           )}
         </div>
       </section>

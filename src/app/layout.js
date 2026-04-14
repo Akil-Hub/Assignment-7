@@ -5,6 +5,8 @@ import Footer from "@/components/common/Footer";
 import DataProvider from "@/context/dataContext";
 import Providers from "@/app/lib/providers";
   import { ToastContainer} from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+import { Slide, Bounce, Zoom, Flip } from "react-toastify";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -34,7 +36,17 @@ export default function RootLayout({ children }) {
           {children}
           <Footer />
 
-          <ToastContainer/>
+          <ToastContainer
+
+           position="top-center"
+        autoClose={2000}
+      
+ 
+      
+
+        transition={Zoom}
+         
+          />
         </Providers>
       </body>
     </html>

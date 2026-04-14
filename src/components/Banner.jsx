@@ -4,10 +4,10 @@ import React from "react";
 const Banner = () => {
   return (
     <section className="wrapper text-center">
-      <h1 className="text-4xl font-bold text-gray-800 ">
+      <h1 className="md:text-4xl text-2xl font-bold text-gray-800 ">
         Friends to keep close in your life
       </h1>
-      <p className="text-secondary w-130 mx-auto py-3">
+      <p className="text-secondary md:w-130 mx-auto py-3 break-all text-xs md:text-base">
         Your personal shelf of meaningful connections. Browse, tend, and nurture
         the relationships that matter most.
       </p>

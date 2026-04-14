@@ -27,7 +27,7 @@ const Footer = () => {
           <Image src={twitter} alt={"twitter"} width={50} height={50} />
         </div>
 
-        <div className="flex justify-between py-4 items-center text-gray-300 text-sm">
+        <div className="flex  flex-col md:flex-row justify-between py-4 items-center text-gray-300 text-sm">
           <p>© 2026 KeenKeeper. All rights reserved.</p>
           <div className="text-gray-300 flex items-center gap-10">
             <p>Privacy Policy</p>
