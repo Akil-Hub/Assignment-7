@@ -32,11 +32,10 @@ const FriendDetails = () => {
         const audioCall = {
             name:name,
             status:'audioCall',
-            audioCallCount:1
 
         }
         
-        setTimeline([...timeline,audioCall,audioCallCount += 1])
+        setTimeline([...timeline,audioCall])
         toast.success(`Audio Calling to ${name}`)
         
     };
