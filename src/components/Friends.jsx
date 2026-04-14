@@ -14,7 +14,7 @@ const Friends = () => {
     <section className="wrapper pb-10">
       <h3 className="text-3xl font-bold text-gray-900 pb-8">Your Friends</h3>
 
-      <article className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center">
+      <article className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8 justify-items-center place-items-center items-center w-full">
         {!friends ? (
           <p>Loading friends......</p>
         ) : (

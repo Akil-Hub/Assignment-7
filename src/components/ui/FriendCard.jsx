@@ -7,7 +7,7 @@ const FriendCard = ({friend}) => {
    <Link href={`/${friend.id}`}>
      <section
             key={friend.id}
-            className="w-64 flex flex-col justify-center items-center space-y-3 card rounded-md shadow-lg hover:scale-105 duration-300 transition-all py-4 px-5"
+            className="w-70 flex flex-col justify-center items-center space-y-3 card rounded-md shadow-lg hover:scale-105 duration-300 transition-all py-4 px-5"
           >
             <Image
               src={friend.picture}
