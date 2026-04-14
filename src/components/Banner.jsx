@@ -14,7 +14,7 @@ const Banner = () => {
       </p>
       <Button className={'text-white py-3'} size="sm">+ Add a Friend</Button>
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 wrapper  justify-items-center gap-x-7 py-10 border-b border-gray-200">
+      <div className="grid grid-cols-1 gap-4 lg:grid-cols-4 wrapper  justify-items-center gap-x-7 gap-y-5 py-10 border-b border-gray-200">
 
         <div className=" bg-white text-center py-4 rounded-md w-full">
             <h4 className="text-xl text-primary font-semibold">10</h4>
