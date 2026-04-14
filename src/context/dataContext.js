@@ -6,8 +6,7 @@ export const DataContext = createContext();
 
 const DataProvider = ({ children }) => {
   const [friends, setFriends] = useState([]);
-  const [timeline, setTimeline] = useState([])
-
+  const [timeline, setTimeline] = useState([]);
 
   useEffect(() => {
     const getData = async () => {
@@ -17,9 +16,18 @@ const DataProvider = ({ children }) => {
     getData();
   }, []);
 
+  useEffect(() => {
+    const stored = localStorage.getItem("timelineFriends");
+    if (stored) setTimeline(JSON.parse(stored));
+  }, []);
 
+  useEffect(() => {
+    localStorage.setItem("timelineFriends", JSON.stringify(timeline));
+  }, [timeline]);
   return (
-    <DataContext.Provider value={{ friends,timeline,setTimeline }}>{children}</DataContext.Provider>
+    <DataContext.Provider value={{ friends, timeline, setTimeline }}>
+      {children}
+    </DataContext.Provider>
   );
 };
 
